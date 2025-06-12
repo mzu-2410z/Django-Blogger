@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Blog</title>
+</head>
+<body>
+    <nav>
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}!</p>
+            <a href="{% url 'logout' %}">Logout</a> |
+            <a href="{% url 'post_create' %}">New Post</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> |
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+        <hr>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

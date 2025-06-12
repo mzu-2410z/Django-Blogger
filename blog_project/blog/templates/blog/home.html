@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>All Blog Posts</h1>
+<ul>
+    {% for post in posts %}
+        <li>
+            <strong>{{ post.title }}</strong> - {{ post.author }}
+            <br>
+            {{ post.content|truncatewords:20 }}
+            <br>
+            {% if user == post.author %}
+                <a href="{% url 'post_edit' post.id %}">Edit</a> |
+                <a href="{% url 'post_delete' post.id %}">Delete</a>
+            {% endif %}
+        </li>
+        <hr>
+    {% endfor %}
+</ul>
+{% endblock %}
